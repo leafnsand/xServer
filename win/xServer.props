@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <X_SERVER_SOLUTION>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), xServer.root))</X_SERVER_SOLUTION>
+    <X_SERVER_ROOT>$(X_SERVER_SOLUTION)\..</X_SERVER_ROOT>
+    <X_SERVER_LIBRARY>$(X_SERVER_ROOT)\third-party</X_SERVER_LIBRARY>
+    <X_SERVER_LIB>$(X_SERVER_ROOT)\build\win\</X_SERVER_LIB>
+    <X_SERVER_OBJ>$(X_SERVER_SOLUTION)\obj\$(ProjectName)</X_SERVER_OBJ>
+    <X_SERVER_SOURCE>$(X_SERVER_ROOT)\xServer</X_SERVER_SOURCE>
+    <X_SERVER_LUA>$(X_SERVER_LIBRARY)\lua</X_SERVER_LUA>
+    <X_SERVER_JEMALLOC>$(X_SERVER_LIBRARY)\jemalloc</X_SERVER_JEMALLOC>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(X_SERVER_LIB)\</OutDir>
+    <IntDir>$(X_SERVER_OBJ)\</IntDir>
+    <LibraryWPath>$(X_SERVER_LIB);$(WindowsSDK_MetadataPath);</LibraryWPath>
+    <ReferencePath>$(VC_ReferencesPath_x86);</ReferencePath>
+    <LibraryPath>$(X_SERVER_LIB);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <IncludePath>$(X_SERVER_JEMALLOC)\include;$(X_SERVER_LUA);$(X_SERVER_SOURCE);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <CompileAs>CompileAsC</CompileAs>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <PreprocessorDefinitions>LUA_BUILD_AS_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="X_SERVER_SOLUTION">
+      <Value>$(X_SERVER_SOLUTION)</Value>
+    </BuildMacro>
+    <BuildMacro Include="X_SERVER_ROOT">
+      <Value>$(X_SERVER_ROOT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="X_SERVER_LIBRARY">
+      <Value>$(X_SERVER_LIBRARY)</Value>
+    </BuildMacro>
+    <BuildMacro Include="X_SERVER_LIB">
+      <Value>$(X_SERVER_LIB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="X_SERVER_OBJ">
+      <Value>$(X_SERVER_OBJ)</Value>
+    </BuildMacro>
+    <BuildMacro Include="X_SERVER_SOURCE">
+      <Value>$(X_SERVER_SOURCE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="X_SERVER_LUA">
+      <Value>$(X_SERVER_LUA)</Value>
+    </BuildMacro>
+    <BuildMacro Include="X_SERVER_JEMALLOC">
+      <Value>$(X_SERVER_JEMALLOC)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
